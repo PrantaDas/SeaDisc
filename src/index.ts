@@ -2,7 +2,7 @@ import { config } from "dotenv";
 config();
 
 import { Bot } from "./bot";
-import { SlashCommandRegistrar } from "./regitrar";
+import { SlashCommandRegistrar } from "./registrar";
 import { COMMANDS } from "./commands";
 import OpenSeaClient from "./opensea";
 import { Network } from "./types";
