@@ -30,7 +30,7 @@ async function main() {
     const registarar = new SlashCommandRegistrar(bot, TOKEN, COMMANDS);
     await registarar.registerSlashCommand();
     const openseaClient = new OpenSeaClient(OPENSEA_API_KEY, bot);
-    openseaClient.connect();
+    await openseaClient.connect();
 }
 
 (async () => {

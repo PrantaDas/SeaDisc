@@ -5,7 +5,7 @@ import { WebSocket } from "ws";
 export default class OpenSeaClient {
     private readonly client: OpenSeaStreamClient;
     private readonly apiKey: string;
-    private readonly bot: Bot;
+    private bot: Bot;
 
     constructor(key: string, discBot: Bot) {
         this.apiKey = key;
@@ -20,16 +20,17 @@ export default class OpenSeaClient {
     }
 
     private eventHandler(event: any) {
-        // console.log(event);
+        if (!this.bot.getCollections.has(event.payload.collection.slug)) return;
+        console.log(event);
     }
 
-    public connect() {
+    public async connect() {
         this.client.onEvents(
             '*',
             [
                 EventType.COLLECTION_OFFER, EventType.ITEM_CANCELLED, EventType.ITEM_LISTED, EventType.ITEM_METADATA_UPDATED, EventType.ITEM_RECEIVED_BID, EventType.ITEM_RECEIVED_OFFER, EventType.ITEM_SOLD, EventType.ITEM_TRANSFERRED, EventType.ORDER_INVALIDATE, EventType.ORDER_REVALIDATE
             ],
-            this.eventHandler
+            this.eventHandler.bind(this)
         );
 
         this.client.connect();

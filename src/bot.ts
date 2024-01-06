@@ -7,12 +7,12 @@ import {
 
 export class Bot {
     private client: Client;
-    private readonly botToekn: string;
+    private readonly botToken: string;
     private user: string;
     public collections: Set<string>;
 
     constructor(token: string) {
-        this.botToekn = token;
+        this.botToken = token;
         this.user = '';
         this.collections = new Set();
         this.client = new Client({
@@ -47,7 +47,7 @@ export class Bot {
     }
 
     public async start() {
-        await this.client.login(this.botToekn);
+        await this.client.login(this.botToken);
     }
 
     get discClient() {
