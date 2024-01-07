@@ -37,7 +37,7 @@ export class Bot {
 
         this.client.once('ready', this.onReady.bind(this));
         this.client.on('messageCreate', this.onMessage.bind(this));
-        this.client.on('interactionCreate', this.interActionHalder.bind(this));
+        this.client.on('interactionCreate', this.interactionHandler.bind(this));
     }
 
     private onReady() {
@@ -47,7 +47,7 @@ export class Bot {
 
     private onMessage(message: Message) {
         if (message.author.bot) return;
-        this.saveUser(message.author.id);
+        this.saveUser = message.author.id;
     }
 
     public async start() {
@@ -58,7 +58,7 @@ export class Bot {
         return this.client;
     }
 
-    public saveUser(id: string) {
+    set saveUser(id: string) {
         this.user = id;
     }
 
@@ -66,44 +66,37 @@ export class Bot {
         return this.collections;
     }
 
-    private async interActionHalder(interaction: Interaction) {
-        if (!interaction.isChatInputCommand()) return;
-        if (interaction.isCommand()) {
-            for (const Command of this.slashCommands) {
-                if (interaction.commandName === Command.data.name) {
-                    await Command.execute(interaction, this.subscriptionHandler.bind(this));
-                    break;
-                }
-            }
-        }
+    private async interactionHandler(interaction: Interaction) {
+        if (!interaction.isCommand()) return;
+        const command = this.slashCommands.find(command => command.data.name === interaction.commandName);
+        if (command) await command.execute(interaction, this.subscriptionHandler.bind(this));
     }
 
     private async subscriptionHandler(interaction: CommandInteraction) {
+        let slug = '';
         switch (interaction.commandName) {
             case 'subscribe':
+                slug = interaction.options.get('input', true).value as string;
+                if (!slug) return await interaction.reply('Please provide a valid collection slug');
 
-                const slug = interaction.options.get('input', true).value as string;
+                if (!this.collections.has(slug) && this.collections.add(slug)) {
+                    return await interaction.reply(`Successfully subscribed to collection ${slug}`);
+                }
+
+            case 'unsubscribe':
+                slug = interaction.options.get('input', true).value as string;
                 if (!slug) return await interaction.reply('Please provide a valid collection slug');
 
                 if (!this.collections.has(slug)) {
-                    this.collections.add(slug);
-                    return await interaction.reply(`Successfully subscribed to collection ${slug}`);
-                }
-                break;
-            case 'unsubscribe':
-                const slugUn = interaction.options.get('input', true).value as string;
-                if (!slugUn) return await interaction.reply('Please provide a valid collection slug');
-
-                if (!this.collections.has(slugUn)) {
-                    return await interaction.reply(`You are not subscribed to the collection ${slugUn}`);
+                    return await interaction.reply(`You are not subscribed to the collection ${slug}`);
                 }
 
-                this.collections.delete(slugUn);
-                await interaction.reply(`Successfully unsubscribed collection ${slugUn}`);
-                break;
+                this.collections.delete(slug);
+                return await interaction.reply(`Successfully unsubscribed collection ${slug}`);
+
             case 'collections':
                 if (this.collections.size === 0) return await interaction.reply('Currenly you are not subscribed to any collections');
-                await interaction.reply(`Your collections ${Array.from(this.collections).join(',')}`);
+                return await interaction.reply(`Your collections ${Array.from(this.collections).join(',')}`);
 
             default:
                 console.log('=> Bajinga');

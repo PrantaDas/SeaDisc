@@ -24,14 +24,17 @@ const OPENSEA_API_KEY = process.env.OPENSEA_API_KEY!;
 console.log('=> All environment variables are loaded');
 
 async function main() {
+    // Initialize the BOT
     const bot = new Bot(TOKEN, CommandList);
     await bot.start();
+
+    // Register Slash Commands
     const registarar = new SlashCommandRegistrar(bot, TOKEN, CommandList);
     await registarar.registerSlashCommand();
+
+    // Start OpenSea Client
     const openseaClient = new OpenSeaClient(OPENSEA_API_KEY, bot);
     await openseaClient.connect();
 }
 
-(async () => {
-    await main();
-})();
+(async () => await main())();

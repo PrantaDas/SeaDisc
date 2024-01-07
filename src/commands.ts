@@ -1,28 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Command } from "./types";
 
-// export const COMMANDS = [
-//     new SlashCommandBuilder()
-//         .setName('ping')
-//         .setDescription('Replies with pong'),
-
-//     new SlashCommandBuilder()
-//         .setName('hello')
-//         .setDescription('Replies with Hi!'),
-
-//     new SlashCommandBuilder()
-//         .setName('subscribe')
-//         .setDescription('Subscribe a collection to get events.Eg: /subscribe boardapes')
-//         .addStringOption((option) =>
-//             option.setName('collection slug')
-//                 .setDescription('Replies with a successful subscription')
-//         ),
-
-//     new SlashCommandBuilder()
-//         .setName('unsubscribe')
-//         .setDescription('Unsubscribe a collection to get events.Eg: /unsubscribe boardapes')
-// ];
-
 const ping: Command = {
     data: new SlashCommandBuilder()
         .setName('ping')

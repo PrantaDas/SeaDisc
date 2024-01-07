@@ -7,7 +7,6 @@ export enum Network {
 
 
 export interface Command {
-    data: Omit<SlashCommandBuilder, "addSubcommandGroup" | "addSubcommand">
-    | SlashCommandSubcommandsOnlyBuilder;
+    data: Omit<SlashCommandBuilder, "addSubcommandGroup" | "addSubcommand"> | SlashCommandSubcommandsOnlyBuilder;
     execute: (interaction: CommandInteraction, callback?: (interaction: CommandInteraction) => Promise<any>) => Promise<any>;
 };
