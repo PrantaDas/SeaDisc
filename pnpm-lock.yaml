@@ -20,6 +20,12 @@ dependencies:
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
+  rotating-file-stream:
+    specifier: ^3.1.1
+    version: 3.2.1
+  tslog:
+    specifier: ^4.9.2
+    version: 4.9.2
   ws:
     specifier: ^8.16.0
     version: 8.16.0
@@ -978,6 +984,11 @@ packages:
       glob: 7.2.3
     dev: true
 
+  /rotating-file-stream@3.2.1:
+    resolution: {integrity: sha512-n2B18CJb+n2VA5Tdle+1NP2toEcRv68CjAOBjHmwcyswNwMVsrN3gVRZ9ymH3sapaiGY8jc9OhhV5b6I5rAeiA==}
+    engines: {node: '>=14.0'}
+    dev: false
+
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -1092,6 +1103,11 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+    dev: false
+
+  /tslog@4.9.2:
+    resolution: {integrity: sha512-wBM+LRJoNl34Bdu8mYEFxpvmOUedpNUwMNQB/NcuPIZKwdDde6xLHUev3bBjXQU7gdurX++X/YE7gLH8eXYsiQ==}
+    engines: {node: '>=16'}
     dev: false
 
   /type-check@0.4.0:
