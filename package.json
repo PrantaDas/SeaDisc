@@ -7,8 +7,25 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "discord.js",
+    "bot",
+    "discord.js",
+    "typescript",
+    "opensea",
+    "blockchain",
+    "nft",
+    "discord bot",
+    "websocket"
+  ],
+  "author": {
+    "name": "Prantadas",
+    "url": "https://github.com/Prantadas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrantaDas/SeaDisc"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.10.6",
@@ -23,6 +40,8 @@
     "@types/ws": "^8.5.10",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
-    "ws": "^8.16.0"
+    "ws": "^8.16.0",
+    "rotating-file-stream": "^3.1.1",
+    "tslog": "^4.9.2"
   }
 }

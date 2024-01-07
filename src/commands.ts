@@ -1,28 +1,33 @@
+/**
+ * Command interface representing a Discord slash command.
+ * @interface Command
+ * @property {SlashCommandBuilder} data - The data for building the slash command.
+ * @property {Function} execute - The function to execute when the command is triggered.
+ * @param {CommandInteraction} interaction - The Discord command interaction object.
+ * @param {Function} callback - Optional callback function for command execution.
+ */
+
+/**
+ * Slash command builder from Discord.js library for creating slash commands.
+ * @external SlashCommandBuilder
+ * @see {@link https://discord.js.org/#/docs/builders/main/class/SlashCommandBuilder}
+ */
+
+/**
+ * Type representing a Discord slash command.
+ * @typedef {Object} Command
+ * @property {SlashCommandBuilder} data - The data for building the slash command.
+ * @property {Function} execute - The function to execute when the command is triggered.
+ * @param {CommandInteraction} interaction - The Discord command interaction object.
+ * @param {Function} callback - Optional callback function for command execution.
+ */
+
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Command } from "./types";
 
-// export const COMMANDS = [
-//     new SlashCommandBuilder()
-//         .setName('ping')
-//         .setDescription('Replies with pong'),
-
-//     new SlashCommandBuilder()
-//         .setName('hello')
-//         .setDescription('Replies with Hi!'),
-
-//     new SlashCommandBuilder()
-//         .setName('subscribe')
-//         .setDescription('Subscribe a collection to get events.Eg: /subscribe boardapes')
-//         .addStringOption((option) =>
-//             option.setName('collection slug')
-//                 .setDescription('Replies with a successful subscription')
-//         ),
-
-//     new SlashCommandBuilder()
-//         .setName('unsubscribe')
-//         .setDescription('Unsubscribe a collection to get events.Eg: /unsubscribe boardapes')
-// ];
-
+/**
+ * Command object for the "/ping" slash command.
+ */
 const ping: Command = {
     data: new SlashCommandBuilder()
         .setName('ping')
@@ -32,6 +37,9 @@ const ping: Command = {
     }
 };
 
+/**
+ * Command object for the "/hello" slash command.
+ */
 const hello: Command = {
     data: new SlashCommandBuilder()
         .setName('hello')
@@ -41,6 +49,9 @@ const hello: Command = {
     }
 };
 
+/**
+ * Command object for the "/subscribe" slash command.
+ */
 const subscribe: Command = {
     data: new SlashCommandBuilder()
         .setName('subscribe')
@@ -56,6 +67,10 @@ const subscribe: Command = {
     }
 };
 
+
+/**
+ * Command object for the "/unsubscribe" slash command.
+ */
 const unsubscribe: Command = {
     data: new SlashCommandBuilder()
         .setName('unsubscribe')
@@ -71,6 +86,9 @@ const unsubscribe: Command = {
     }
 };
 
+/**
+ * Command object for the "/collections" slash command.
+ */
 const collections: Command = {
     data: new SlashCommandBuilder()
         .setName('collections')
@@ -82,4 +100,7 @@ const collections: Command = {
     }
 };
 
+/**
+ * List of custom slash commands for the Discord bot.
+ */
 export const CommandList: Command[] = [ping, hello, subscribe, unsubscribe, collections];
