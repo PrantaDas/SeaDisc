@@ -19,9 +19,13 @@ export default class OpenSeaClient {
         });
     }
 
-    private eventHandler(event: any) {
+    private async eventHandler(event: any) {
+        // console.log(this.bot.getCollections);
         if (!this.bot.getCollections.has(event.payload.collection.slug)) return;
-        console.log(event);
+        if (event.event_type === 'collection_offer') {
+            return await this.bot.sendEvent(`Event type: ${event.event_type}\nhttps://opensea.io/collection/${event.payload.collection.slug}`);
+        }
+        else return await this.bot.sendEvent(`Event type: ${event.event_type}\n${event.payload.item.permalink}`);
     }
 
     public async connect() {
