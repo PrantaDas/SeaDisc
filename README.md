@@ -71,4 +71,4 @@ Thank you, [Rakibul Yeasin](https://github.com/dreygur), for being an integral p
 <img src='./src//static//seadisc.png' width="500" />
 </div>
 
-#### **Made with:heart: by  Pranta Das**
+#### **Made with :heart: by  Pranta Das**
